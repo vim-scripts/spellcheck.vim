@@ -56,8 +56,11 @@ ruby << RUBYBLOCK
         }
         print("Change '#{cword}' to alternative (return for no change): ")
         alt = VIM::evaluate("input('[1-#{counter}] ')").chomp.to_i
-        if (alt < counter+1) and (alt > 0)
+        if (alt <= counter) and (alt > 0)
+            curpos = $curwin.cursor
             VIM::command("%s/#{cword}/#{words[alt-1]}/g")
+            $curwin.cursor = curpos
+            VIM.command("call SpchkNxt()")
         end
       end
     }
@@ -157,6 +160,8 @@ endfunction
 nmap \p :call Propose()<cr>
 nmap \c :call SpellCheck()<cr>
 nmap \a :call AddToDictionary()<cr>
+nmap \<left> :call SpchkPrv()<cr>
+nmap \<right> :call SpchkNxt()<cr>
 
 
 amenu 190.80.10 E&xtended.Spell.&check :call SpellCheck()<cr>
@@ -168,3 +173,4 @@ amenu 190.80.50 E&xtended.Spell.&dictionary.&English :call SetLanguageTag("us_US
 amenu 190.80.60 E&xtended.Spell.au&to.&enable :call SpellAutoEnable()<cr>
 amenu 190.80.60 E&xtended.Spell.au&to.&disable :call SpellAutoDisable()<cr>
 
+" vim: set syntax=vim :
