@@ -1,0 +1,26 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=131
+
+This script enables spell checking capabilities known from text 
+processors:
+
+*SpellCheck: highlights all misspelled words
+*Propose: checks word under cursor - giving proposals for correcting
+*AddToDictionary: adds word under cursor to dictionary
+*SpchkNxt: jumps to next error
+*SpchkPrv: jumps to previous error
+*SetLanguageTag: which language to use (uk_UK | de_DE ...)
+*SpellAutoEnable: enables automatic higlighting of misspelled words
+  (this is done via CursorHold)
+*SpellAutoDisable: disables automatic check
+
+problems:
+-syntax highlighting does not work correctly in every syntax-mode
+ solution: set syntax=off and then do the spellcheck
+-to add a word to the list of known words, the skript has to know 
+ which private dictionary aspell is using (something like 
+ $HOME/.aspell.xxx.pws where xxx depends on the language tag)
+ the current relation is: 
+   uk_UK|us_US -> english (.aspell.english.pws)
+   de_DE -> de (.aspell.de.pws)
+ to add entries or change existing ones, there is a little adjustment table.
+
