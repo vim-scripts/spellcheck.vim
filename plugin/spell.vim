@@ -71,8 +71,8 @@ function AddToDictionary()
 ruby << RUBYBLOCK
     langtag_to_dic = {
       "de_DE" => "de",
-      "uk_UK" => "english",
-      "us_US" => "english"
+      "en_UK" => "english",
+      "en_US" => "english"
     }
     dic = langtag_to_dic[VIM::evaluate("s:language_tag")]
     raise "Which dictionary to use with language tag #{VIM::evaluate("s:language_tag")} ??" if (dic.nil?)
